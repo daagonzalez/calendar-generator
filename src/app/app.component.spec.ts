@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angular8-electron'`, () => {
+  it(`should have as title 'calendar-generator'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('angular8-electron');
+    expect(app.title).toEqual('calendar-generator');
   });
 
   it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to angular8-electron!');
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to calendar-generator!');
   });
 });

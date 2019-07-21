@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to angular8-electron!');
+    expect(page.getTitleText()).toEqual('Welcome to calendar-generator!');
   });
 
   afterEach(async () => {

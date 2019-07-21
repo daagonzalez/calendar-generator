@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular8-electron": {
+    "calendar-generator": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular8-electron",
+            "outputPath": "dist/calendar-generator",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular8-electron:build"
+            "browserTarget": "calendar-generator:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular8-electron:build:production"
+              "browserTarget": "calendar-generator:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular8-electron:build"
+            "browserTarget": "calendar-generator:build"
           }
         },
         "test": {
@@ -106,15 +106,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular8-electron:serve"
+            "devServerTarget": "calendar-generator:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular8-electron:serve:production"
+              "devServerTarget": "calendar-generator:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "angular8-electron"
+  "defaultProject": "calendar-generator"
 }
