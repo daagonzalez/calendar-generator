@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'calendar-generator';
+  currentMonth = "JUL";
+  currentYear = 2019;
+
+  schoolYears = [
+    'TODOS',
+    '10',
+    '11',
+    '12'
+  ]
 }
