@@ -68,3 +68,11 @@ body {
 .section-title {
     font-size: 14px;
 }
+
+.card p {
+  margin-bottom: 0;
+}
+
+.card {
+  height: 165px;
+}

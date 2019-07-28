@@ -1,10 +1,11 @@
 <div class="main-view">
   <div class="row">
     <div class="col-12">
-      <input class="search-bar" type="text" placeholder="Buscar"><button class="btn-search"><i class="fa fa-search"></i></button>
+      <input class="search-bar" type="text" placeholder="Buscar"><button class="btn-search"><i
+          class="fa fa-search"></i></button>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-8">
       <h1>{{currentMonth}} {{currentYear}}</h1>
@@ -19,7 +20,7 @@
   <div class="row">
     <div class="col-12">
       <span class="section-title">Filtrar eventos</span>
-      <hr style="margin-top: 0px;"/>
+      <hr style="margin-top: 0px;" />
     </div>
   </div>
 
@@ -28,10 +29,48 @@
       <label>Año:&nbsp;</label>
       <select>
         <option *ngFor="let schoolYear of schoolYears">
-            {{ schoolYear }}
-          </option>
+          {{ schoolYear }}
+        </option>
       </select>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <span *ngIf="eventList.length < 1">
+        <h2>No hay eventos</h2>
+      </span>
+      <span *ngIf="eventList.length >= 1">
+        <div class="card" *ngFor="let event of eventList">
+          <div class="row">
+            <div class="col-4">
+              <h3>
+                {{event.date}}
+              </h3>
+            </div>
+            <div class="col-8">
+              <h3>{{event.subject}}</h3>
+              <p><i class="fa fa-clock-o"></i> {{event.startTime}} - {{event.endTime}}</p>
+              <p><i class="fa fa-graduation-cap"></i> {{event.schoolYear}}</p>
+              <p><i class="fa fa-comment"></i> {{event.comments}}</p>
+            </div>
+          </div>
+        </div>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <button class="btn btn-primary"
+      style="margin-top: -25%; margin-bottom: 0px; margin-left: 40%; border-radius: 25px">Nuevo</button>
+  </div>
+</div>
+
+<div class="row" *ngIf="eventList.length > 0">
+  <div class="col-12" style="text-align: center; margin-top: -8%">
+    <a style="font-size: 17px;">Guardar calendario</a>
   </div>
 </div>
 
