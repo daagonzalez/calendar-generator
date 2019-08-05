@@ -19,7 +19,7 @@ export class EventsComponent {
 
   eventList = [];
 
-  AddNewEvent = function() {
+  GoLeft = function() {
     this.eventList = [{
       date: '26 MAR',
       subject: 'Español',

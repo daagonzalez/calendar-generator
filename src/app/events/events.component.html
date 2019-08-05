@@ -10,7 +10,7 @@
       <h1>{{currentMonth}} {{currentYear}}</h1>
     </div>
     <div class="col-4" style="padding-top: 5%">
-      <button class="btn-pag"><i class="fa fa-angle-left"></i></button>
+      <button (click)="GoLeft()" class="btn-pag"><i class="fa fa-angle-left"></i></button>
       &nbsp;
       <button class="btn-pag"><i class="fa fa-angle-right"></i></button>
     </div>
@@ -63,7 +63,7 @@
 
 <div class="row">
   <div class="col-12">
-    <button class="btn btn-bottom btn-primary" (click)="AddNewEvent()">Nuevo</button>
+    <button class="btn btn-bottom btn-primary" routerLink="/eventDetails">Nuevo</button>
   </div>
 </div>
 

@@ -16,10 +16,10 @@ body {
 
 
 .main-view {
-  margin: 2em;
+  margin: 1.7em;
   background: white;
-  width: calc(360px - 4em);
-  height: calc(740px - 6em);
+  width: 304px;
+  height: 644px;
   padding: 1em;
 }
 

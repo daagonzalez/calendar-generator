@@ -1,74 +1,82 @@
+<span class="eventDetailsArea">
+  <h3>
+    Información del evento
+  </h3>
   <div class="row">
     <div class="col-12">
-      <input class="search-bar" type="text" placeholder="Buscar"><button class="btn-search"><i
-          class="fa fa-search"></i></button>
+      <i class="fa fa-book"></i> Materia
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-8">
-      <h1>{{currentMonth}} {{currentYear}} AAAA</h1>
-    </div>
-    <div class="col-4" style="padding-top: 5%">
-      <button class="btn-pag"><i class="fa fa-angle-left"></i></button>
-      &nbsp;
-      <button class="btn-pag"><i class="fa fa-angle-right"></i></button>
+  <div class="row end-row">
+    <div class="col-12">
+      <input class="input-lg" type="text" [(ngModel)]="subject">
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
-      <span class="section-title">Filtrar eventos</span>
-      <hr style="margin-top: 0px;" />
+      <i class="fa fa-calendar-o"></i> Fecha
+    </div>
+  </div>
+  <div class="row end-row">
+    <div class="col-12">
+      <input class="input-lg" type="date" [(ngModel)]="date">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 float-left">
+      <i class="fa fa-clock-o"></i> Hora inicio
+    </div>
+    <div class="col-6">
+      Hasta
+    </div>
+  </div>
+  <div class="row end-row">
+    <div class="col-6 float-left">
+      <input class="input-lg" type="time" [(ngModel)]="startTime">
+    </div>
+    <div class="col-6 float-right">
+      <input class="input-lg" type="time" [(ngModel)]="endTime">
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
-      <label>Año:&nbsp;</label>
-      <select>
-        <option *ngFor="let schoolYear of schoolYears">
-          {{ schoolYear }}
-        </option>
-      </select>
+      <i class="fa fa-graduation-cap"></i> Año
+    </div>
+  </div>
+  <div class="row end-row">
+    <div class="col-12">
+      <input class="input-lg" type="radio" [(ngModel)]="schoolYear" value="10"> 10°
+      <input class="input-lg" type="radio" [(ngModel)]="schoolYear" value="11"> 11°
+      <input class="input-lg" type="radio" [(ngModel)]="schoolYear" value="12"> 12°
     </div>
   </div>
 
   <div class="row">
     <div class="col-12">
-      <span *ngIf="eventList.length < 1">
-        <h2>No hay eventos</h2>
-      </span>
-      <span *ngIf="eventList.length >= 1">
-        <div class="card" *ngFor="let event of eventList">
-          <div class="row">
-            <div class="col-4">
-              <h3>
-                {{event.date}}
-              </h3>
-            </div>
-            <div class="col-8">
-              <h3>{{event.subject}}</h3>
-              <p><i class="fa fa-clock-o"></i> {{event.startTime}} - {{event.endTime}}</p>
-              <p><i class="fa fa-graduation-cap"></i> {{event.schoolYear}}</p>
-              <p><i class="fa fa-comment"></i> {{event.comments}}</p>
-            </div>
-          </div>
-        </div>
-      </span>
+      <i class="fa fa-comment"></i> Notas adicionales
     </div>
   </div>
+  <div class="row end-row">
+    <div class="col-12">
+      <textarea class="input-lg" [(ngModel)]="comments"></textarea>
+    </div>
+  </div>
+</span>
 
 <div class="row">
   <div class="col-12">
     <button class="btn btn-primary"
-      style="margin-top: -25%; margin-bottom: 0px; margin-left: 40%; border-radius: 25px">Nuevo</button>
+      style="margin-top: -24%; margin-bottom: 0px; margin-left: 35%; border-radius: 25px"
+      (click)="SaveData()">Guardar</button>
   </div>
 </div>
 
-<div class="row" *ngIf="eventList.length > 0">
-  <div class="col-12" style="text-align: center; margin-top: -8%">
-    <a style="font-size: 17px;">Guardar calendario</a>
+<div class="row" *ngIf="eventList.length > 0" style="margin-top: -8%">
+  <div class="col-12" style="text-align: center; ">
+    <a style="font-size: 17px;">Cancelar y descartar</a>
   </div>
 </div>
 
