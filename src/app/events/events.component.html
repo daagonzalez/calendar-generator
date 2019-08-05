@@ -1,0 +1,74 @@
+  <div class="row">
+    <div class="col-12">
+      <input class="search-bar" type="text" placeholder="Buscar"><button class="btn-search"><i
+          class="fa fa-search"></i></button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <h1>{{currentMonth}} {{currentYear}}</h1>
+    </div>
+    <div class="col-4" style="padding-top: 5%">
+      <button class="btn-pag"><i class="fa fa-angle-left"></i></button>
+      &nbsp;
+      <button class="btn-pag"><i class="fa fa-angle-right"></i></button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <span class="section-title">Filtrar eventos</span>
+      <hr style="margin-top: 0px;" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <label>Año:&nbsp;</label>
+      <select>
+        <option *ngFor="let schoolYear of schoolYears">
+          {{ schoolYear }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card-container">
+        <span *ngIf="eventList.length < 1">
+          <h2>No hay eventos</h2>
+        </span>
+        <span *ngIf="eventList.length >= 1">
+          <div class="card" *ngFor="let event of eventList">
+            <div class="row">
+              <div class="col-5">
+                <h3>
+                  {{event.date}}
+                </h3>
+              </div>
+              <div class="col-7">
+                <h4>{{event.subject}}</h4>
+                <p><i class="fa fa-clock-o"></i> {{event.startTime}} - {{event.endTime}}</p>
+                <p><i class="fa fa-graduation-cap"></i> {{event.schoolYear}}</p>
+                <p><i class="fa fa-comment"></i> {{event.comments}}</p>
+              </div>
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-12">
+    <button class="btn btn-bottom btn-primary" (click)="AddNewEvent()">Nuevo</button>
+  </div>
+</div>
+
+<div class="row" *ngIf="eventList.length > 0">
+  <div class="col-12" style="text-align: center; margin-top: -8%">
+    <a style="font-size: 17px;">Guardar calendario</a>
+  </div>
+</div>
