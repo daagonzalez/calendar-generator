@@ -74,7 +74,7 @@ body {
 }
 
 .card-container {
-  height: 390px;
+  height: 360px;
   width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -82,12 +82,12 @@ body {
 }
 
 .card-container .card {
-  height: 195px;
+  height: 150px;
   margin-bottom: 1em;
 }
 
 .btn-bottom {
-  margin-top: -25%; 
+  margin-top: -40%; 
   margin-bottom: 0px; 
   margin-left: 35%; 
   border-radius: 25px !important; 

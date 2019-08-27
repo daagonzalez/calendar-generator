@@ -6,9 +6,35 @@ import { Component } from '@angular/core';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent {
+  months = [
+    'ENE',
+    'FEB',
+    'MAR',
+    'ABR',
+    'MAY',
+    'JUN',
+    'JUL',
+    'AGO',
+    'SEP',
+    'OCT',
+    'NOV',
+    'DEC'
+  ];
+
   title = 'calendar-generator';
-  currentMonth = "JUL";
-  currentYear = 2019;
+  currentMonth = this.months[new Date().getMonth()];
+  currentYear = new Date().getFullYear();
+  eventList = [];
+
+  constructor () {
+    this.eventList = (sessionStorage.getItem('eventList')) ? JSON.parse(sessionStorage.getItem('eventList')) : [];
+
+    if (this.eventList.length > 0) {
+      let eventDateObj = new Date(this.eventList[0].dateObj);
+      this.currentMonth = this.months[eventDateObj.getMonth()];
+      this.currentYear = eventDateObj.getFullYear();
+    }
+  }
 
   schoolYears = [
     'TODOS',
@@ -17,7 +43,6 @@ export class EventsComponent {
     '12'
   ];
 
-  eventList = [];
 
   GoLeft = function() {
     this.eventList = [{
