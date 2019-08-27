@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class EventsComponent {
     'ABR',
     'MAY',
     'JUN',
-    'JUL',
+    'JUL   ',
     'AGO',
     'SEP',
     'OCT',
@@ -22,16 +23,18 @@ export class EventsComponent {
   ];
 
   title = 'calendar-generator';
-  currentMonth = this.months[new Date().getMonth()];
+  currentMonthId = new Date().getMonth();
+  currentMonth = this.months[this.currentMonthId];
   currentYear = new Date().getFullYear();
   eventList = [];
 
-  constructor () {
+  constructor (private router: Router) {
     this.eventList = (sessionStorage.getItem('eventList')) ? JSON.parse(sessionStorage.getItem('eventList')) : [];
 
     if (this.eventList.length > 0) {
       let eventDateObj = new Date(this.eventList[0].dateObj);
-      this.currentMonth = this.months[eventDateObj.getMonth()];
+      this.currentMonthId = eventDateObj.getMonth();
+      this.currentMonth = this.months[this.currentMonthId];
       this.currentYear = eventDateObj.getFullYear();
     }
   }
@@ -45,29 +48,29 @@ export class EventsComponent {
 
 
   GoLeft = function() {
-    this.eventList = [{
-      date: '26 MAR',
-      subject: 'Español',
-      startTime: '7 am',
-      endTime: '9 am',
-      schoolYear: '10',
-      comments: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    },
-    {
-      date: '27 MAR',
-      subject: 'Matemática',
-      startTime: '7 am',
-      endTime: '9 am',
-      schoolYear: '10',
-      comments: ''
-    },
-    {
-      date: '28 MAR',
-      subject: 'Estudios Sociales',
-      startTime: '7 am',
-      endTime: '9 am',
-      schoolYear: '10',
-      comments: ''
-    }];
+    if (this.currentMonthId > 0) {
+      this.currentMonthId--;
+    }
+    else if (this.currentMonthId == 0) {
+      this.currentMonthId = 11;
+      this.currentYear--;
+    }
+    this.currentMonth = this.months[this.currentMonthId];
+  }
+
+  GoRight = function() {
+    if (this.currentMonthId < 11) {
+      this.currentMonthId++;
+    }
+    else if (this.currentMonthId == 11) {
+      this.currentMonthId = 0;
+      this.currentYear++;
+    }
+    this.currentMonth = this.months[this.currentMonthId];
+  }
+
+  ToDetails = function(event) {
+    sessionStorage.setItem('eventObj', JSON.stringify(event));
+    this.router.navigate(['eventDetails']);
   }
 }

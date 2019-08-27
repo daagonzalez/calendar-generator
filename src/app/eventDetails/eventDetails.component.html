@@ -66,17 +66,30 @@
   </div>
 </span>
 
-<div class="row">
+<div *ngIf="!changes" class="row">
   <div class="col-12">
     <button class="btn btn-primary"
-      style="margin-top: -24%; margin-bottom: 0px; margin-left: 35%; border-radius: 25px"
+      style="margin-top: -25%; margin-bottom: 0px; margin-left: 35%; border-radius: 25px"
       (click)="SaveData()">Guardar</button>
+  </div>  
+</div>
+
+<div *ngIf="changes" class="row">
+  <div class="col-6">
+    <button class="btn btn-danger"
+      style="margin-top: -65%; margin-bottom: 0px; margin-left: 5%; border-radius: 25px"
+      (click)="DeleteData()">Eliminar</button>
   </div>
+  <div class="col-6">
+    <button class="btn btn-primary"
+      style="margin-top: -65%; margin-bottom: 0px; margin-left: 35%; border-radius: 25px"
+      (click)="SaveData()">Guardar</button>
+  </div>  
 </div>
 
 <div class="row" style="margin-top: -8%">
   <div class="col-12" style="text-align: center; ">
-    <a style="font-size: 17px;">Cancelar y descartar</a>
+    <a routerLink="/events" style="font-size: 17px;">Cancelar y descartar</a>
   </div>
 </div>
 

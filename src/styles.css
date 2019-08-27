@@ -83,7 +83,13 @@ body {
 
 .card-container .card {
   height: 150px;
+  background-color: #ddf;
   margin-bottom: 1em;
+  cursor: pointer;
+}
+
+.card-container  :hover {
+  background-color: #fff;
 }
 
 .btn-bottom {
