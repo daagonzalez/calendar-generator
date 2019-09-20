@@ -16,6 +16,18 @@ export class EventDetailsComponent {
   comments = "";
   id = -1;
   changes = false;
+  subjects = [
+    'Español',
+    'Matemática',
+    'Estudios Sociales',
+    'Física Mate',
+    'Biología',
+    'Química',
+    'Inglés',
+    'Cívica',
+    'Otra'
+  ];
+  addSubject = false;
 
   constructor (private router: Router) {
     if (sessionStorage.getItem('eventObj')) {
@@ -167,5 +179,14 @@ export class EventDetailsComponent {
 
   GoBack = function() {
     this.router.navigate(['events']);
+  }
+
+  watchSubjects = function(valueSelected) {
+    if (valueSelected == 'Otra') {
+      this.addSubject = true;
+    } else {
+      this.addSubject = false;
+      this.subject = valueSelected;
+    }
   }
 }
