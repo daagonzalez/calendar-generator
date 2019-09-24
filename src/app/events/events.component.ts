@@ -46,6 +46,8 @@ export class EventsComponent {
     '12'
   ];
 
+  schoolYearSelected = 'TODOS';
+
 
   GoLeft = function() {
     if (this.currentMonthId > 0) {
@@ -72,5 +74,13 @@ export class EventsComponent {
   ToDetails = function(event) {
     sessionStorage.setItem('eventObj', JSON.stringify(event));
     this.router.navigate(['eventDetails']);
+  }
+
+  schoolYearFilter = function(event: any, filterx: any) {
+    if (filterx == 'TODOS') {
+      return true;
+    } else {
+      return (event.schoolYear == filterx);
+    }    
   }
 }

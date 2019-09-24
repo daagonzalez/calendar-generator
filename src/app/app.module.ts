@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventsComponent } from './events/events.component';
 import { EventDetailsComponent } from './eventDetails/eventDetails.component';
+import { CallbackPipe } from './callback.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     EventsComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    CallbackPipe
   ],
   imports: [
     BrowserModule,
