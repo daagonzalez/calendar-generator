@@ -9,7 +9,12 @@
   </div>
   <div class="row end-row">
     <div class="col-12">
-      <input class="input-lg" type="text" [(ngModel)]="subject">
+      <select *ngIf="!addSubject" class="input-lg" (change)="watchSubjects($event.target.value)">
+          <option *ngFor="let subjectL of subjects" value={{subjectL}}>
+              {{subjectL}}
+          </option>
+      </select>
+      <input *ngIf="addSubject" class="input-lg" type="text" [(ngModel)]="subject">
     </div>
   </div>
 
