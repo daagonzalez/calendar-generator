@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-0": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -22,7 +23,10 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
+    "bootstrap": "^4.3.1",
+    "font-awesome": "^4.7.0",
     "rxjs": "~6.4.0",
+    "sweetalert2": "^8.16.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"
   },

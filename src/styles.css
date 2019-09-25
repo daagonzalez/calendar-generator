@@ -1,1 +1,100 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~font-awesome/css/font-awesome.css';
+
+body {
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background: -webkit-linear-gradient(-90deg, #c5d5ea, #759eb8);
+  background: -moz-linear-gradient(-90deg, #c5d5ea, #759eb8);
+  background: -o-linear-gradient(-90deg, #c5d5ea, #759eb8);
+  background: linear-gradient(-90deg, #c5d5ea, #759eb8);
+}
+
+
+.main-view {
+  margin: 1.7em;
+  background: white;
+  width: 304px;
+  height: 644px;
+  padding: 1em;
+}
+
+.search-bar {
+  width: 80%;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-left: 2px solid #7392b7;
+  border-right: 0;
+  border-top: 2px solid #7392b7;
+  border-bottom: 2px solid #7392b7;
+  float: left;
+  padding: 6px;
+  height: 40px;
+}
+
+.btn-search {
+  width: 20%;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-left: 0;
+  border-right: 2px solid #7392b7;
+  border-top: 2px solid #7392b7;
+  border-bottom: 2px solid #7392b7;
+  float: right;
+  height: 40px;
+  background: white;
+}
+
+.btn-search :hover {
+    background: whitesmoke;
+}
+
+.btn-pag {
+    border: 2px solid #7392b7;
+    border-radius: 100%;
+    background-color: #d8e1e9;
+}
+
+.btn-pag :hover {
+    background-color: #b3c5d7;
+}
+
+.section-title {
+    font-size: 14px;
+}
+
+.card p {
+  margin-bottom: 0;
+}
+
+.card-container {
+  height: 360px;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-bottom: 5.5em;
+}
+
+.card-container .card {
+  height: 150px;
+  background-color: #ddf;
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+.card-container  :hover {
+  background-color: #fff;
+}
+
+.btn-bottom {
+  margin-top: -40%; 
+  margin-bottom: 0px; 
+  margin-left: 35%; 
+  border-radius: 25px !important; 
+}
