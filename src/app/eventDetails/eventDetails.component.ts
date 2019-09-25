@@ -8,7 +8,6 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./eventDetails.component.css']
 })
 export class EventDetailsComponent {
-  subject = "";
   date = "";
   startTime = "";
   endTime = "";
@@ -27,6 +26,7 @@ export class EventDetailsComponent {
     'Cívica',
     'Otra'
   ];
+  subject = "Español";
   addSubject = false;
 
   constructor (private router: Router) {
