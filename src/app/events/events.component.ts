@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent {
+  fs: any;
+  dialog: any;
+
   months = [
     'ENE',
     'FEB',
@@ -28,14 +31,17 @@ export class EventsComponent {
   currentYear = new Date().getFullYear();
   eventList = [];
 
-  constructor (private router: Router) {
+  constructor(private router: Router) {
+    this.fs = (window as any).fs;
+    this.dialog = (window as any).dialog;
+
     this.eventList = (sessionStorage.getItem('eventList')) ? JSON.parse(sessionStorage.getItem('eventList')) : [];
 
-    this.eventList = this.eventList.sort((a,b,) => {
-      return <any>parseInt(b.startTime.replace(":","")) - parseInt(a.startTime.replace(":",""));
+    this.eventList = this.eventList.sort((a, b, ) => {
+      return <any > parseInt(b.startTime.replace(":", "")) - parseInt(a.startTime.replace(":", ""));
     });
-    this.eventList = this.eventList.sort((a,b) => {
-      return <any>new Date(b.dateObj) - <any>new Date(a.dateObj);
+    this.eventList = this.eventList.sort((a, b) => {
+      return <any > new Date(b.dateObj) - < any > new Date(a.dateObj);
     });
 
     let currentDateSS = JSON.parse(sessionStorage.getItem('currentDate'));
@@ -50,7 +56,7 @@ export class EventsComponent {
         this.currentMonth = this.months[this.currentMonthId];
         this.currentYear = eventDateObj.getFullYear();
       }
-    }    
+    }
   }
 
   schoolYears = [
@@ -63,45 +69,71 @@ export class EventsComponent {
   schoolYearSelected = 'TODOS';
 
 
-  GoLeft = function() {
+  GoLeft = function () {
     if (this.currentMonthId > 0) {
       this.currentMonthId--;
-    }
-    else if (this.currentMonthId == 0) {
+    } else if (this.currentMonthId == 0) {
       this.currentMonthId = 11;
       this.currentYear--;
     }
-    this.currentMonth = this.months[this.currentMonthId];    
-    sessionStorage.setItem('currentDate', JSON.stringify({month: this.currentMonth, year: this.currentYear}));
+    this.currentMonth = this.months[this.currentMonthId];
+    sessionStorage.setItem('currentDate', JSON.stringify({
+      month: this.currentMonth,
+      year: this.currentYear
+    }));
   }
 
-  GoRight = function() {
+  GoRight = function () {
     if (this.currentMonthId < 11) {
       this.currentMonthId++;
-    }
-    else if (this.currentMonthId == 11) {
+    } else if (this.currentMonthId == 11) {
       this.currentMonthId = 0;
       this.currentYear++;
     }
     this.currentMonth = this.months[this.currentMonthId];
-    sessionStorage.setItem('currentDate', JSON.stringify({month: this.currentMonth, year: this.currentYear}));
+    sessionStorage.setItem('currentDate', JSON.stringify({
+      month: this.currentMonth,
+      year: this.currentYear
+    }));
   }
 
-  ToDetails = function(event) {
+  ToDetails = function (event) {
     sessionStorage.setItem('eventObj', JSON.stringify(event));
     this.router.navigate(['eventDetails']);
   }
-  
-  schoolYearFilter = function(event: any, filterYear: any) {
+
+  schoolYearFilter = function (event: any, filterYear: any) {
     if (filterYear == 'TODOS') {
       return true;
     } else {
       return (event.schoolYear == filterYear);
-    }    
+    }
   }
 
-  monthFilter = function(event: any, filterDate: any) {
+  monthFilter = function (event: any, filterDate: any) {
     let eventDate = new Date(event.dateObj);
     return (eventDate.getMonth() == filterDate[0] && eventDate.getFullYear() == filterDate[1]);
+  }
+
+  SaveFile = function () {
+    var options = {
+      title: "Save file",
+      defaultPath: "my_filename",
+      buttonLabel: "Save",
+
+      filters: [{
+          name: 'txt',
+          extensions: ['txt', ]
+        },
+        {
+          name: 'All Files',
+          extensions: ['*']
+        }
+      ]
+    }
+
+    this.dialog.showSaveDialog(options, (filename) => {
+      this.fs.writeFileSync(filename, "hello world", 'utf-8');
+    })
   }
 }
