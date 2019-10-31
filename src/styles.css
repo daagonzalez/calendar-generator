@@ -93,8 +93,6 @@ body {
 }
 
 .btn-bottom {
-  margin-top: -40%; 
-  margin-bottom: 0px; 
-  margin-left: 35%; 
+  margin-top: -25px;
   border-radius: 25px !important; 
 }

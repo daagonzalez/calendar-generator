@@ -1,9 +1,9 @@
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-12">
       <input class="search-bar" type="text" placeholder="Buscar"><button class="btn-search"><i
           class="fa fa-search"></i></button>
     </div>
-  </div>
+  </div> -->
 
   <div class="row">
     <div class="col-7">
@@ -62,13 +62,13 @@
   </div>
 
 <div class="row">
-  <div class="col-12">
-    <button class="btn btn-bottom btn-primary" routerLink="/eventDetails">Nuevo</button>
+  <div class="col-12" style="text-align: center;">
+    <button class="btn btn-bottom btn-primary" style="width: 100px" routerLink="/eventDetails">Nuevo</button>
   </div>
 </div>
 
 <div class="row" *ngIf="eventList.length > 0">
-  <div class="col-12" style="text-align: center; margin-top: -12%">
-    <a (click)="SaveFile()" style="font-size: 17px;">Guardar calendario</a>
+  <div class="col-12" style="text-align: center; margin-top: 0px">
+    <a (click)="SaveFile()" style="font-size: 17px; cursor: pointer;">Guardar calendario</a>
   </div>
 </div>
