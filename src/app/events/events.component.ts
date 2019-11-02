@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class EventsComponent {
     'ABR',
     'MAY',
     'JUN',
-    'JUL   ',
+    'JUL',
     'AGO',
     'SEP',
     'OCT',
@@ -28,12 +29,13 @@ export class EventsComponent {
   ];
 
   title = 'calendar-generator';
-  currentMonthId = new Date().getMonth();
+  currentMonthId = moment().month();
   currentMonth = this.months[this.currentMonthId];
-  currentYear = new Date().getFullYear();
+  currentYear = moment().year();
   eventList = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router) { 
+
     this.fs = (window as any).fs;
     this.dialog = (window as any).dialog;
     this.process = (window as any).process;
@@ -44,19 +46,20 @@ export class EventsComponent {
       return <any > parseInt(b.startTime.replace(":", "")) - parseInt(a.startTime.replace(":", ""));
     });
     this.eventList = this.eventList.sort((a, b) => {
-      return <any > new Date(b.dateObj) - < any > new Date(a.dateObj);
+      return <any > moment(b.dateObj) - < any > moment(a.dateObj);
     });
 
     let currentDateSS = JSON.parse(sessionStorage.getItem('currentDate'));
     if (currentDateSS) {
       this.currentMonth = currentDateSS.month;
+      this.currentMonthId = currentDateSS.monthId;
       this.currentYear = currentDateSS.year;
     } else {
       if (this.eventList.length > 0) {
-        let eventDateObj = new Date(this.eventList[0].dateObj);
-        this.currentMonthId = eventDateObj.getMonth();
+        let eventDateObj = moment(this.eventList[0].dateObj);
+        this.currentMonthId = eventDateObj.month();
         this.currentMonth = this.months[this.currentMonthId];
-        this.currentYear = eventDateObj.getFullYear();
+        this.currentYear = eventDateObj.year();
       }
     }
   }
@@ -81,6 +84,7 @@ export class EventsComponent {
     this.currentMonth = this.months[this.currentMonthId];
     sessionStorage.setItem('currentDate', JSON.stringify({
       month: this.currentMonth,
+      monthId: this.currentMonthId,
       year: this.currentYear
     }));
   }
@@ -95,6 +99,7 @@ export class EventsComponent {
     this.currentMonth = this.months[this.currentMonthId];
     sessionStorage.setItem('currentDate', JSON.stringify({
       month: this.currentMonth,
+      monthId: this.currentMonthId,
       year: this.currentYear
     }));
   }
@@ -113,8 +118,8 @@ export class EventsComponent {
   }
 
   monthFilter = function (event: any, filterDate: any) {
-    let eventDate = new Date(event.dateObj);
-    return (eventDate.getMonth() == filterDate[0] && eventDate.getFullYear() == filterDate[1]);
+    let eventDate = moment(event.dateObj);
+    return (eventDate.month() == filterDate[0] && eventDate.year() == filterDate[1]);
   }
 
   generateIcs = function(schoolYear, events) {
@@ -135,11 +140,11 @@ export class EventsComponent {
     'END:VTIMEZONE\n';
 
     events.forEach(event => {
-      var eventDateObj = new Date(event.dateObj);
+      var eventDateObj = moment(event.dateObj);
       var eventDate = {
-        year: eventDateObj.getFullYear(),
-        month: eventDateObj.getMonth() + 1,
-        day: eventDateObj.getDate(),
+        year: eventDateObj.year(),
+        month: eventDateObj.month() + 1,
+        day: eventDateObj.date(),
         startTime: event.startTime.replace(":","") + "00",
         endTime: event.endTime.replace(":","") + "00"
       };
@@ -214,6 +219,7 @@ export class EventsComponent {
           });
         }
 
+
         let options = {
           title: "Escoja carpeta donde guardar los archivos",
           buttonLabel: "Guardar aquí",
@@ -223,11 +229,22 @@ export class EventsComponent {
         let dir = this.dialog.showOpenDialog(options);
         let directorySeparator = (this.process.platform === "win32") ? "\\" : "/";
 
-        filesToExport.forEach(file => {
-          this.fs.writeFileSync(dir + directorySeparator + file.name, file.contents, 'utf-8');          
-        });
+
+        this.storeData(filesToExport,dir,directorySeparator);
       }
-    });
+    });    
+  }
+  storeData = async(filesToExport, dir, directorySeparator) => {
+    await Promise.all(filesToExport.map(async file => {
+      this.fs.writeFileSync(dir + directorySeparator + file.name, file.contents, 'utf-8');
+    }));
     
+    //# Show a message to indicate success
+    Swal.fire({
+      title: "¡Se guardaron los calendarios correctamente!",
+      type: 'success',
+      confirmButtonText: 'Ok',
+      showCancelButton: false
+    });
   }
 }

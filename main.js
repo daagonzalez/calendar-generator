@@ -4,7 +4,7 @@ function createWindow () {
   // Crea la ventana del navegador.
   let win = new BrowserWindow({
     width: 360,
-    height: 760,
+    height: 770,
     backgroundColor: "#7392b7",
     webPreferences: {
         nodeIntegration: true

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Router, RouterModule } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',
@@ -45,7 +46,7 @@ export class EventDetailsComponent {
   }
 
   GetEventDate = function () {
-    let theDate = new Date(this.date);
+    let theDate = moment(this.date);
     let months = [
       'ENE',
       'FEB',
@@ -60,7 +61,7 @@ export class EventDetailsComponent {
       'NOV',
       'DEC'
     ];
-    return (((theDate.getDate()+1) < 10) ? "0" + (theDate.getDate()+1) : (theDate.getDate())+1) + " " + months[theDate.getMonth()];
+    return (((theDate.date()) < 10) ? "0" + (theDate.date()) : (theDate.date())) + " " + months[theDate.month()];
   }
 
   SaveData = function () {
@@ -69,7 +70,7 @@ export class EventDetailsComponent {
     //## Create the event object
     let theEvent = {
       date: this.GetEventDate(),
-      dateObj: new Date(this.date),
+      dateObj: moment(this.date),
       subject: this.subject,
       startTime: this.startTime,
       endTime: this.endTime,
